@@ -1,0 +1,14 @@
+CREATE PROCEDURE adduser
+@first_name nvarchar(20),
+@last_name nvarchar(20),
+@email nvarchar(30),
+@password nvarchar(20),
+@userID int
+
+AS
+
+	INSERT INTO User (fname, lname, email, password, userID) 
+	VALUES(@first_name, @last_name, @email, @password, @userID);
+
+
+GO;

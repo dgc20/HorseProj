@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Horse Pedigree Database</title>
+
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Horse Pedigree Database</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    Horses
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/horses/add">Add a Horse</a>
+                    <a class="dropdown-item" href="/horses/search">Search Horses</a>
+                </div>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Pedigrees<span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item mr-2">
+                <div class="btn-nav">
+                    <button type="button" id="signUpButton" class="btn btn-outline-primary">
+                        Sign Up
+                    </button>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="btn-nav">
+                    <button type="button" id="logInButton" class="btn btn-primary">
+                        Log In
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="nav-placeholder">
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="mt-5">
+                <h1>Pedigrees</h1>
+            </div>
+
+        </div>
+    </div>
+
+    <ul class="nav nav-pills nav-fill mt-2">
+        <li class="nav-item">
+            <a class="nav-link active" id="view-pedigree-tab" data-toggle="tab" href="#view-pedigree" role="tab"
+               aria-controls="view-pedigree" aria-selected="true">View Pedigree</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="dam-of-tab" data-toggle="tab" href="#dam-of" role="tab" aria-controls="dam-of"
+               aria-selected="false">Dam Of</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="sire-of-tab" data-toggle="tab" href="#sire-of" role="tab" aria-controls="sire-of"
+               aria-selected="false">Sire Of</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="maternal-to-tab" data-toggle="tab" href="#maternal-to" role="tab"
+               aria-controls="maternal-to" aria-selected="false">Maternal To</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="sired-these-dams-tab" data-toggle="tab" href="#sired-these-dams" role="tab"
+               aria-controls="sired-these-dams" aria-selected="false">Sired These Dams</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="trial-pedigree-tab" data-toggle="tab" href="#trial-pedigree" role="tab"
+               aria-controls="trial-pedigree" aria-selected="false">Trial Pedigree</a>
+        </li>
+    </ul>
+
+    <hr/>
+
+    <!-- Tab panes -->
+    <div class="tab-content" id="myTabContent">
+        <!-- START VIEW PEDIGREE TAB -->
+        <div class="tab-pane fade show active" id="view-pedigree" role="tabpanel" aria-labelledby="view-pedigree-tab">
+            <div class="col-lg-12">
+                <div class="row mt-2">
+                    <div class="container">
+                        <h4>View Pedigree</h4>
+                        <div class="d-flex">
+                            <input class="form-control mr-1" placeholder="Search Horses">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                        <style>
+                            .table > tbody > tr > td {
+                                vertical-align: middle;
+                                border: 1px solid black;
+                            }
+                        </style>
+                        <div class="mt-2 w-100 rounded justify-content-center align-self-center">
+                            <table style="background-color: #f5f5f5" class="table" id="PedigreeTable" width="80%" cellspacing="0" cellpadding="0">
+                                <tbody>
+                                <tr>
+                                    <td colspan="2" rowspan="8" class="m" onmousedown="clickMenu('AMERICAN PHAROAH',3,1,event);"><a href="/index.php?query_type=horse&amp;h=AMERICAN+PHAROAH&amp;g=3">AMERICAN PHAROAH</a></td>
+                                    <td colspan="2" rowspan="4" class="m" onmousedown="clickMenu('PIONEEROF THE NILE',3,1,event);">
+                                        <a href="/index.php?query_type=horse&amp;h=PIONEEROF+THE+NILE&amp;g=3">PIONEEROF THE NILE</a>
+                                    </td>
+                                    <td colspan="2" rowspan="2" class="m" onmousedown="clickMenu('EMPIRE MAKER',3,1,event);"><a href="/index.php?query_type=horse&amp;h=EMPIRE+MAKER&amp;g=3">EMPIRE MAKER</a></td>
+                                    <td colspan="2" class="m" onmousedown="clickMenu('UNBRIDLED',3,1,event);"><a href="/index.php?query_type=horse&amp;h=UNBRIDLED&amp;g=3">UNBRIDLED</a>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="f" onmousedown="clickMenu('TOUSSAUD',3,1,event);"><a href="/index.php?query_type=horse&amp;h=TOUSSAUD&amp;g=3">TOUSSAUD</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="2" class="f" onmousedown="clickMenu('STAR OF GOSHEN',3,1,event);"><a href="/index.php?query_type=horse&amp;h=STAR+OF+GOSHEN&amp;g=3">STAR OF GOSHEN</a></td>
+                                    <td colspan="2" class="m" onmousedown="clickMenu('LORD AT WAR',3,1,event);"><a href="/index.php?query_type=horse&amp;h=LORD+AT+WAR&amp;g=3">LORD AT WAR</a>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="f" onmousedown="clickMenu('CASTLE EIGHT',3,1,event);"><a href="/index.php?query_type=horse&amp;h=CASTLE+EIGHT&amp;g=3">CASTLE EIGHT</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="4" class="f" onmousedown="clickMenu('LITTLEPRINCESSEMMA',3,1,event);">
+                                        <a href="/index.php?query_type=horse&amp;h=LITTLEPRINCESSEMMA&amp;g=3">LITTLEPRINCESSEMMA</a>
+                                    </td>
+                                    <td colspan="2" rowspan="2" class="m" onmousedown="clickMenu('YANKEE GENTLEMAN',3,1,event);"><a href="/index.php?query_type=horse&amp;h=YANKEE+GENTLEMAN&amp;g=3">YANKEE GENTLEMAN</a></td>
+                                    <td colspan="2" class="m" onmousedown="clickMenu('STORM CAT',3,1,event);"><a href="/index.php?query_type=horse&amp;h=STORM+CAT&amp;g=3">STORM CAT</a>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="f" onmousedown="clickMenu('KEY PHRASE',3,1,event);"><a href="/index.php?query_type=horse&amp;h=KEY+PHRASE&amp;g=3">KEY PHRASE</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" rowspan="2" class="f" onmousedown="clickMenu('EXCLUSIVE ROSETTE',3,1,event);"><a href="/index.php?query_type=horse&amp;h=EXCLUSIVE+ROSETTE&amp;g=3">EXCLUSIVE ROSETTE</a>
+                                    <td colspan="2" class="m" onmousedown="clickMenu('ECLIPTICAL',3,1,event);"><a href="/index.php?query_type=horse&amp;h=ECLIPTICAL&amp;g=3">ECLIPTICAL</a></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" class="f" onmousedown="clickMenu('ZETTA JET',3,1,event);"><a href="/index.php?query_type=horse&amp;h=ZETTA+JET&amp;g=3">ZETTA JET</a></td>
+                                </tr>
+                                <tr></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END VIEW PEDIGREE TAB -->
+
+        <!-- START DAM OF TAB -->
+        <div class="tab-pane fade" id="dam-of" role="tabpanel" aria-labelledby="dam-of-tab">
+            <div class="col-lg-12">
+                <div class="row mt-2">
+                    <div class="container">
+                        <h4>Dam Of</h4>
+                        <div class="d-flex">
+                            <input class="form-control mr-1" placeholder="Search Dams">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="mt-2 w-100 rounded" style="background-color: lightgray; height: 500px">
+                            <p>List will go here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END VIEW DAM OF TAB -->
+
+        <!-- START SIRE OF TAB -->
+        <div class="tab-pane fade" id="sire-of" role="tabpanel" aria-labelledby="sire-of-tab">
+            <div class="col-lg-12">
+                <div class="row mt-2">
+                    <div class="container">
+                        <h4>Sire Of</h4>
+                        <div class="d-flex">
+                            <input class="form-control mr-1" placeholder="Search Sires">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="mt-2 w-100 rounded" style="background-color: lightgray; height: 500px">
+                            <p>List will go here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END VIEW SIRE OF TAB -->
+
+        <!-- START MATERNAL TO TAB -->
+        <div class="tab-pane fade" id="maternal-to" role="tabpanel" aria-labelledby="maternal-to-tab">
+            <div class="col-lg-12">
+                <div class="row mt-2">
+                    <div class="container">
+                        <h4>Maternal To</h4>
+                        <div class="d-flex">
+                            <input class="form-control mr-1" placeholder="Search Dams">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="mt-2 w-100 rounded" style="background-color: lightgray; height: 500px">
+                            <p>List will go here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END MATERNAL TO TAB -->
+
+        <!-- START SIRED THESE DAMS TAB -->
+        <div class="tab-pane fade" id="sired-these-dams" role="tabpanel" aria-labelledby="sired-these-dams-tab">
+            <div class="col-lg-12">
+                <div class="row mt-2">
+                    <div class="container">
+                        <h4>Sired These Dams</h4>
+                        <div class="d-flex">
+                            <input class="form-control mr-1" placeholder="Search Sires">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                        <div class="mt-2 w-100 rounded" style="background-color: lightgray; height: 500px">
+                            <p>List will go here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END SIRED THESE DAMS TAB -->
+
+        <!-- START TRAIL PEDIGREE TAB -->
+        <div class="tab-pane fade" id="trial-pedigree" role="tabpanel" aria-labelledby="trial-pedigree-tab">
+            <div class="col-lg-12">
+                <div class="row mt-2">
+                    <div class="container">
+                        <h4>Trial Pedigree</h4>
+                        <div class="d-flex">
+                            <input class="form-control mr-1" placeholder="Enter First Horse">
+                            <input class="form-control mr-1" placeholder="Enter Second Horse">
+                            <button class="btn btn-primary">Trial</button>
+                        </div>
+                        <div class="mt-2 w-100 rounded" style="background-color: lightgray; height: 500px">
+                            <p>Trial pedigree will go here</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END TRAIL PEDIGREE TAB -->
+    </div>
+
+</div>
+
+
+</div>
+
+
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/pedigrees.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
+</body>
+</html>

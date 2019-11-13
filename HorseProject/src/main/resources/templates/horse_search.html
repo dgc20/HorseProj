@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Horse Pedigree Database</title>
+
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Horse Pedigree Database</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Horses
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/horses/add">Add a Horse</a>
+                    <a class="dropdown-item" href="/horses/search">Search Horses</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/pedigrees">Pedigrees</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item mr-2">
+                <div class="btn-nav">
+                    <button type="button" id="signUpButton" class="btn btn-outline-primary">
+                        Sign Up
+                    </button>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="btn-nav">
+                    <button type="button" id="logInButton" class="btn btn-primary">
+                        Log In
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="nav-placeholder">
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">Search Horses</h1>
+            <p>Enter a horse's name to search the database</p>
+            <input class="form-control" id="myInput" type="text" placeholder="Search">
+            <br>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Horse Name</th>
+                    <th scope="col">Year of Birth</th>
+                    <th scope="col">Country of Origin</th>
+                    <th scope="col">Breed</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Gait</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class='clickable-row' th:each="horse: ${horse_list}" th:href="@{'/horses/' + ${horse.id}}">
+                    <td th:text="${horse.name}" />
+                    <td th:text="${horse.yearOfBirth}" />
+                    <td th:text="${horse.countryOfOrigin}" />
+                    <td th:text="${horse.breed}" />
+                    <td th:text="${horse.sex}" />
+                    <td th:text="${horse.gait}" />
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
+<script>
+    jQuery(document).ready(function($) {
+        $(".clickable-row").click(function() {
+            window.location = $(this).attr("href");
+        });
+    });
+</script>
+
+<style>
+    tr {
+        cursor: pointer;
+    }
+</style>
+
+</body>
+</html>

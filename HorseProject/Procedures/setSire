@@ -1,0 +1,12 @@
+CREATE PROCEDURE setSire
+
+@id int,
+@sire int
+
+AS
+
+	UPDATE Horse
+	SET sire = @sire
+	WHERE id = @id;
+
+GO;

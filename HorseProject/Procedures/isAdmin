@@ -1,0 +1,9 @@
+CREATE PROCEDURE isAdmin
+
+@userID int
+
+AS
+
+	--return true if the user is an admin
+
+GO;

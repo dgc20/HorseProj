@@ -1,0 +1,18 @@
+CREATE PROCEDURE addHorse
+
+@name nvarchar(20),
+@id int,
+@sex nvarchar(1),
+@breed nvarchar(1),
+@dob dateTime,
+@coo nvarchar(4),
+@gait nvarchar(1),
+@sire int,
+@dam int
+
+AS
+
+	INSERT INTO Horse (name, id, sex, breed, dob, coo, gait, sire, dam) 
+	VALUES(@name, @id, @sex, @breed, @dob, @coo, @gait, @sire, @dam);
+
+GO;

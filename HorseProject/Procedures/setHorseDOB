@@ -1,0 +1,12 @@
+CREATE PROCEDURE setHorseDOB
+
+@id int,
+@dob dateTime
+
+AS
+
+	UPDATE Horse
+	SET dob = @dob
+	WHERE id = @id;
+
+GO;

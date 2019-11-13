@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Horse Pedigree Database</title>
+
+    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../static/css/main.css" th:href="@{/css/main.css}" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Horse Pedigree Database</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Horses
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/horses/add">Add a Horse</a>
+                    <a class="dropdown-item" href="/horses/search">Search Horses</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/pedigrees">Pedigrees</a>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            <li class="nav-item mr-2">
+                <div class="btn-nav">
+                    <button type="button" id="signUpButton" class="btn btn-outline-primary">
+                        Sign Up
+                    </button>
+                </div>
+            </li>
+            <li class="nav-item">
+                <div class="btn-nav">
+                    <button type="button" id="logInButton" class="btn btn-primary">
+                        Log In
+                    </button>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div id="nav-placeholder">
+
+</div>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="mt-5">Add Horse</h1>
+            <form>
+                <div class="form-group">
+                    <label for="addHorseFormName">Horse Name</label>
+                    <input type="text" class="form-control" id="addHorseFormName" placeholder="Enter Name">
+                </div>
+                <!--add databse functionality to make this a dropdown-->
+                <div class="form-group">
+                        <label for="addHorseFormSire">Sire</label>
+                        <select class="form-control" id="addHorseFormSire" placeholder="Enter Sire"  >
+                            <option value="3"> hello</option>
+                            <option  th:each="horse:${horse_list}" th:text="${horse.getName()}" th:value="${horse.getId()+1} " ></option>
+
+
+
+                        </select>
+
+
+                    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+                    <script>
+                        $('#addHorseFormSire option').each(function(){
+                             console.log($(this).val());
+                        });
+                    </script>
+
+                </div>
+                <!-- also add dam which should be a copy-->
+                <div class="form-group">
+                    <label for="addHorseFormSex">Sex</label>
+                    <select class="form-control" id="addHorseFormSex">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="addHorseFormBreed">Breed</label>
+                    <select class="form-control" id="addHorseFormBreed">
+                        <option>Standardbred</option>
+                        <option>Thoroughbred</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="addHorseFormYear">Year of Birth</label>
+                    <input class="form-control" type="number" placeholder="Year" id="addHorseFormYear">
+                </div>
+                <div class="form-group">
+                    <label for="addHorseFormCountry">Country of Origin</label>
+                    <input type="text" class="form-control" id="addHorseFormCountry" placeholder="Enter Country">
+                </div>
+                <div class="form-group">
+                    <label for="addHorseFormGait">Gait</label>
+                    <select class="form-control" id="addHorseFormGait">
+                        <option>Trotter</option>
+                        <option>Pacer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="addHorseFormRaceType">Race Type</label>
+                    <select class="form-control" id="addHorseFormRaceType">
+                        <option>Time Trial</option>
+                        <option>Qualifier</option>
+                    </select>
+                </div>
+                <div class="alert alert-success alert-dismissable" style="display: none">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    Horse submitted successfully!
+                </div>
+                <hr/>
+                <button id="addHorseFormSubmitButton" type="submit" class="btn btn-primary">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/main.js}"></script>
+
+
+<!-- Toastr -->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        toastr.options = {
+            'closeButton': true,
+            'debug': false,
+            'newestOnTop': false,
+            'progressBar': false,
+            'positionClass': 'toast-bottom-left',
+            'preventDuplicates': true,
+            'showDuration': '1000',
+            'hideDuration': '1000',
+            'timeOut': '5000',
+            'extendedTimeOut': '1000',
+            'showEasing': 'swing',
+            'hideEasing': 'linear',
+            'showMethod': 'fadeIn',
+            'hideMethod': 'fadeOut',
+        }
+    });
+
+    $('#addHorseFormSubmitButton').click(function(e) {
+        e.preventDefault();
+        var url = "/horses/add/addHorse";
+
+        var name = $("#addHorseFormName").val();
+        var sire = $("#addHorseFormSire").val();
+        var sex = $("#addHorseFormSex").val();
+        var breed = $("#addHorseFormBreed").val();
+        var year = $("#addHorseFormYear").val();
+        var country = $("#addHorseFormCountry").val();
+        var gait = $("#addHorseFormGait").val();
+        var race = $("#addHorseFormRaceType").val();
+
+        var dataString = "name=" + name + "&sex=" + sex + "&breed=" + breed + "&year=" + year + "&country=" + country + "&gait=" + gait + "&race=" + race;
+
+        $.ajax({
+            type:'POST',
+            data:dataString,
+            url:'/horses/add/addHorse',
+            success:function(data) {
+                toastr.success("Horse:"+ name + " added;");
+            },
+            error: function(request,status,report){
+                toastr.error(status + " " + report + " "+ request);
+            }
+        });
+
+        //console.log("submitted");
+    })
+
+</script>
+
+</body>
+</html>

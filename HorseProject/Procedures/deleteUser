@@ -1,0 +1,9 @@
+CREATE PROCEDURE deleteUser
+
+@id int
+
+AS
+
+	DELETE FROM User WHERE userID = @id;
+
+GO;

@@ -1,0 +1,65 @@
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Sign Up / Log In</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <ul class="nav nav-pills nav-fill mt-2">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="sign-up-nav-btn" data-toggle="tab" href="#sign-up-tab" role="tab" aria-controls="sign-up" aria-selected="true">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="sign-in-nav-btn" data-toggle="tab" href="#sign-in-tab" role="tab" aria-controls="sign-in-tab" aria-selected="false">Log In</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content" id="myTabContent">
+                    <!-- START VIEW PEDIGREE TAB -->
+                    <div class="tab-pane fade show active" id="sign-up-tab" role="tabpanel" aria-labelledby="sign-up-tab">
+                        <form class="form-signin text-center">
+                            <h1 class="h3 mt-3 mb-3 font-weight-normal">Sign Up</h1>
+                            <label for="inputSignUpEmail" class="sr-only">Email Address</label>
+                            <input type="email" id="inputSignUpEmail" class="form-control mb-2 mt-2" placeholder="Email Address" required="" autofocus="">
+                            <label for="inputSignUpPassword" class="sr-only">Password</label>
+                            <input type="password" id="inputSignUpPassword" class="form-control mb-2 mt-2" placeholder="Password" required="">
+                            <hr/>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                        </form>
+                    </div>
+                    <!-- END VIEW PEDIGREE TAB -->
+
+                    <!-- START DAM OF TAB -->
+                    <div class="tab-pane fade" id="sign-in-tab" role="tabpanel" aria-labelledby="sign-in-tab">
+                        <form class="form-signin text-center">
+                            <h1 class="h3 mt-3 mb-3 font-weight-normal">Log In</h1>
+                            <label for="inputLogInEmail" class="sr-only">Email Address</label>
+                            <input type="email" id="inputLogInEmail" class="form-control mb-2 mt-2" placeholder="Email Address" required="" autofocus="">
+
+                            <label for="inputLogInPassword" class="sr-only">Password</label>
+                            <input type="password" id="inputLogInPassword" class="form-control mb-2 mt-2" placeholder="Password" required="">
+                            <div class="m-4">
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                            <hr/>
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                        </form>
+                    </div>
+                    <!-- END VIEW DAM OF TAB -->
+                </div>
+            </div>
+            <!--
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            -->
+        </div>
+    </div>
+</div>

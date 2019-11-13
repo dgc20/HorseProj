@@ -1,0 +1,11 @@
+CREATE PROCEDURE getHorseGait
+
+@id int
+
+AS
+
+	SELECT gait
+	FROM Horse
+	WHERE id = @id;
+
+GO;

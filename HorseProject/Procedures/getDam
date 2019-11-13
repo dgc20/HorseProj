@@ -1,0 +1,11 @@
+CREATE PROCEDURE getDam
+
+@id int
+
+AS
+
+	SELECT dam
+	FROM Horse
+	WHERE id = @id;
+
+GO;

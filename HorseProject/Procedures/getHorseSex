@@ -1,0 +1,11 @@
+CREATE PROCEDURE getHorseSex
+
+@id int
+
+AS
+
+	SELECT sex
+	FROM Horse
+	WHERE id = @id;
+
+GO;

@@ -1,0 +1,11 @@
+CREATE PROCEDURE getHorseCOO
+
+@id int
+
+AS
+
+	SELECT coo
+	FROM Horse
+	WHERE id = @id;
+
+GO;

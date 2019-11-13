@@ -1,0 +1,11 @@
+CREATE PROCEDURE getHorseDOB
+
+@id int
+
+AS
+
+	SELECT dob
+	FROM Horse
+	WHERE id = @id;
+
+GO;

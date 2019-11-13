@@ -1,0 +1,11 @@
+CREATE PROCEDURE login
+
+@userID int
+
+AS
+
+	SELECT password
+	FROM User
+	WHERE userID = @userID;
+
+GO;

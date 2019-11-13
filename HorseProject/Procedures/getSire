@@ -1,0 +1,11 @@
+CREATE PROCEDURE getSire
+
+@id int
+
+AS
+
+	SELECT sire
+	FROM Horse
+	WHERE id = @id;
+
+GO;

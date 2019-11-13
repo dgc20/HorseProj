@@ -1,0 +1,12 @@
+CREATE PROCEDURE setHorseGait
+
+@id int,
+@gait nvarchar(1)
+
+AS
+
+	UPDATE Horse
+	SET gait = @gait
+	WHERE id = @id;
+
+GO;

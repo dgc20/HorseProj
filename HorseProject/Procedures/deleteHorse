@@ -1,0 +1,9 @@
+CREATE PROCEDURE deleteHorse
+
+@id int
+
+AS
+
+	DELETE FROM Horse WHERE id = @id;
+
+GO;

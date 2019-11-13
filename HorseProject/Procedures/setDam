@@ -1,0 +1,12 @@
+CREATE PROCEDURE setDam
+
+@id int,
+@dam int
+
+AS
+
+	UPDATE Horse
+	SET dam = @dam
+	WHERE id = @id;
+
+GO;
